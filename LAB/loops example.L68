@@ -1,0 +1,51 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 02/02/2022 16:39:59
+
+00001000                             1     ORG    $1000
+00001000                             2  
+00001000                             3  START:               
+00001000  43F9 00001048              4      LEA MESSAGE, A1 
+00001006  103C 000A                  5      MOVE.B #10,D0
+0000100A  31FC 00C8 2000             6      MOVE.W #200,$2000
+00001010                             7      
+00001010                             8  NEXT:
+00001010  5340                       9      SUB #1,D0
+00001012  1400                      10      MOVE.B D0,D2
+00001014  6100 000A                 11      BSR LOOP
+00001018  1002                      12      MOVE.B D2,D0
+0000101A  66F4                      13      BNE NEXT 
+0000101C                            14  
+0000101C  6000 001A                 15      BRA END
+00001020                            16  LOOP:    
+00001020  43F9 00001048             17      LEA MESSAGE, A1
+00001026  103C 000E                 18      MOVE.B #14,D0
+0000102A  4E4F                      19      TRAP #15
+0000102C  4E75                      20      RTS
+0000102E  123C 0064                 21      MOVE.B #100,D1
+00001032  103C 0017                 22      MOVE.B #23,D0
+00001036  4E4F                      23      TRAP  #15
+00001038                            24      
+00001038                            25  END:
+00001038  43F9 00001048             26      LEA MESSAGE, A1
+0000103E  103C 000E                 27      MOVE.B #14,D0
+00001042  4E4F                      28      TRAP #15
+00001044                            29  
+00001044  FFFF FFFF                 30      SIMHALT             
+00001048                            31  
+00001048= 68 69 74 20 2D 32 ...     32  MESSAGE DC.B 'hit -2 ' ,0
+00001050                            33  
+00001050                            34      END    START        
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+END                 1038
+LOOP                1020
+MESSAGE             1048
+NEXT                1010
+START               1000
